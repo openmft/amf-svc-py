@@ -76,8 +76,8 @@ class gm(amfservice):
         status = 0
         self.printer.info('GM service is starting')   
         if self.run(self.home+'/MailboxUtilities/bin/stopGM.sh', printflag=False):
-            if str(self.outbuf).find('Stopping Cassandra ... ... STOPPED ') != -1:
-                if str(self.outbuf).find('Stopping Cassandra Reaper ... ... STOPPED ') != -1:
+            if str(self.outbuf).find('Stopping Cassandra ... ... STOPPED') != -1:
+                if str(self.outbuf).find('Stopping Cassandra Reaper ... ... STOPPED') != -1:
                     if str(self.outbuf).find('Stopping ZooKeeper ... ... STOPPED') != -1:
                         if str(self.outbuf).find('Stopping WatchDog ... ... STOPPED') != -1:
                             pass
@@ -98,7 +98,7 @@ class gm(amfservice):
                     status = 3
             else:
                 print('Failed to stop Cassandra')
-                if str(self.outbuf).find('Stopping Cassandra Reaper ... ... STOPPED ') == -1:
+                if str(self.outbuf).find('Stopping Cassandra Reaper ... ... STOPPED') == -1:
                     print('Failed to stop Cassandra Reaper')
                 if str(self.outbuf).find('Stopping ZooKeeper ... ... STOPPED') == -1:
                     print('Failed to stop Zookeeper')
