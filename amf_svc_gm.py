@@ -175,8 +175,8 @@ class gm(amfservice):
         status = 0
         count = 0
         clist = []
-        clist.append("%-60s%-12s%-10s" % ('PID FILE', 'PID', 'RUNNING'))
-        clist.append('-------------------------------------------------------------------------------')
+        clist.append("%-65s%-12s%-10s" % ('PID FILE', 'PID', 'RUNNING'))
+        clist.append('------------------------------------------------------------------------------------')
         self.run("ps -ef | grep java | cut -c1-30", printflag=False)
         for fname in self.pidfiles:
             found = False
@@ -198,7 +198,7 @@ class gm(amfservice):
                         found = True
                         break
             
-            clist.append("%-65s%-12s%-5s" % (filename, pid, found))
+            clist.append("%-65s%-12s%-10s" % (filename, pid, found))
             if not found:
                 status = 1 
         if count == 0: status = 1
