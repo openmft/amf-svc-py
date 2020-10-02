@@ -190,7 +190,7 @@ class gm(amfservice):
 
             if os.path.exists(filename):
                 count += 1
-                f = open(self.home+fname)
+                f = open(filename)
                 pid = f.read().strip()
                 f.close()
                 for line in self.outbuf:
