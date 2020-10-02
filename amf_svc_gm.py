@@ -21,6 +21,7 @@ class gm(amfservice):
     This service controls all local components for GM
     '''
     pidfiles = ['/apache-cassandra/bin/cassandra.pid']
+    reaperfiles = ['/apache-cassandra/reaper/bin/cassandra-reaper.pid']
     zoofiles = ['/zookeeper/watchdog/bin/watchdog.pid']
            
     def __init__(self, svc, home):
@@ -38,6 +39,7 @@ class gm(amfservice):
         self.reaper_exists = False
         if val and val.lower() == "true":
             self.reaper_exists = True
+            self.pidfiles.extend(self.reaperfiles)
 
 
 
