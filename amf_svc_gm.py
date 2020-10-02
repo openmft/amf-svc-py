@@ -198,7 +198,7 @@ class gm(amfservice):
                         found = True
                         break
             
-            clist.append("%-60s%-12s%-10s" % (filename, pid, found))
+            clist.append("%-65s%-12s%-5s" % (filename, pid, found))
             if not found:
                 status = 1 
         if count == 0: status = 1
