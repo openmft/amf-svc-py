@@ -17,7 +17,7 @@ import time
 
 class gm(amfservice):
     '''
-    This service controls all GM pre-requisite services - Cassandra, Zookeeper, Watchdog, Reaper
+    This service controls all GM pre-requisite services - Cassandra, Reaper, Zookeeper and Watchdog
     '''
     pidfiles = ['/apache-cassandra/bin/cassandra.pid']
     reaperfiles = ['/apache-cassandra/reaper/bin/cassandra-reaper.pid']
