@@ -17,8 +17,7 @@ import time
 
 class gm(amfservice):
     '''
-    IBM Sterling File Gateway
-    This service controls all local components for GM
+    This service controls all GM pre-requisite services - Cassandra, Zookeeper, Watchdog, Reaper
     '''
     pidfiles = ['/apache-cassandra/bin/cassandra.pid']
     reaperfiles = ['/apache-cassandra/reaper/bin/cassandra-reaper.pid']
