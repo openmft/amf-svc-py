@@ -177,7 +177,7 @@ class gm(amfservice):
         count = 0
         clist = []
         clist.append("%-65s%-12s%-10s" % ('PID FILE', 'PID', 'RUNNING'))
-        clist.append('-------------------------------------------------------------------------------')
+        clist.append('------------------------------------------------------------------------------------')
         self.run("ps -ef | grep java | cut -c1-30", printflag=False)
         for fname in self.pidfiles:
             found = False
