@@ -63,7 +63,7 @@ class gm(amfservice):
     def start(self):
         self.suppress_output = True
         status = 0
-        self.printer.info('GM service is starting')   
+        self.printer.info('GM pre-requisite services are starting')   
         if self.run(self.home+'/MailboxUtilities/bin/startGM.sh', printflag=False):
             if str(self.outbuf).find('Starting Cassandra ... STARTED') != -1:
                 if self.reaper_exists and str(self.outbuf).find('Cassandra Reaper ... ... ... STARTED') != -1:
@@ -172,7 +172,7 @@ class gm(amfservice):
 
     def status(self):
         """reports status of all local GM components"""
-        self.printer.info("checking service status")
+        self.printer.info("Checking service status")
         status = 0
         count = 0
         clist = []
