@@ -189,7 +189,7 @@ class gm(amfservice):
 
             if os.path.exists(filename):
                 count += 1
-                f = open(self.home+fname)
+                f = open(filename)
                 pid = f.read().strip()
                 f.close()
                 for line in self.outbuf:
@@ -198,7 +198,7 @@ class gm(amfservice):
                         found = True
                         break
             
-            clist.append("%-60s%-12s%-10s" % (fname, pid, found))
+            clist.append("%-60s%-12s%-10s" % (filename, pid, found))
             if not found:
                 status = 1 
         if count == 0: status = 1
