@@ -63,7 +63,7 @@ class gm(amfservice):
     def start(self):
         self.suppress_output = True
         status = 0
-        self.printer.info('GM service is starting')   
+        self.printer.info('GM pre-requisite services are starting')   
         if self.run(self.home+'/MailboxUtilities/bin/startGM.sh', printflag=False):
             if str(self.outbuf).find('Starting Cassandra ... STARTED') != -1:
                 if self.reaper_exists and str(self.outbuf).find('Cassandra Reaper ... ... ... STARTED') != -1:
@@ -182,7 +182,13 @@ class gm(amfservice):
         for fname in self.pidfiles:
             found = False
             pid = ''
+            filename = ""
             if os.path.exists(self.home+fname):
+                filename = self.home+fname
+            elif os.path.isfile(fname):
+                filename = fname
+
+            if os.path.exists(filename):
                 count += 1
                 f = open(self.home+fname)
                 pid = f.read().strip()
@@ -192,6 +198,7 @@ class gm(amfservice):
                     if vals[1] == pid:
                         found = True
                         break
+            
             clist.append("%-60s%-12s%-10s" % (fname, pid, found))
             if not found:
                 status = 1 
