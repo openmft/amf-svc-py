@@ -1,37 +1,31 @@
-## Welcome to GitHub Pages
+# amf-svc-py
 
-You can use the [editor on GitHub](https://github.com/openmft/amf-svc-py/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Service management is part of an overall application framework Agile Message Framework (AMF) and this code base is a subset of a larger infrastructure that is made available as OpenSource under MIT License.  
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This has been envisioned to be a generic start, stop, restart processs with pluggable modules for each system or sub-system in any environment.   This was created in the context of Managed File Transfer during our experience with IBM customers using Sterling File Gategway and Axway customers, but could be used for any platform by creating new modules.
 
-### Markdown
+# Install
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+* Clone  or download this repository to a directory of your choice.
+* Create a symbolic link for amf.py -> ln -s amf.py amf
+* Create an environment variable per module. For example, for the module amf_svc_sfg.py, create an Environment variable called AMF_SFG_HOME, which is the base path of Sterling File Gateway (SFG).
+* For GM module amf_svc_gm.py, create an Environment variable called AMF_GM_HOME, which is the base path of GM Pre-requisites (Cassandra, Zookeeper, etc)
+* Either create an alias for amf or put the path of amf.py in PATH
 
-```markdown
-Syntax highlighted code block
+# Operation
 
-# Header 1
-## Header 2
-### Header 3
+## Start examples
+* amf start sfg
+* amf start gm
 
-- Bulleted
-- List
+## Stop examples
+* amf stop sfg
+* amf stop gm
 
-1. Numbered
-2. List
+## Restart examples
+* amf restart sfg
+* amf restart gm
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/openmft/amf-svc-py/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## Status examples
+* amf status sfg
+* amf status gm
