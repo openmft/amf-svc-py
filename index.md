@@ -1,4 +1,4 @@
-# amf-svc-py
+# Service Manager to start, stop, restart or check status -> amf-svc-py
 
 Service management is part of an overall application framework Agile Message Framework (AMF) and this code base is a subset of a larger infrastructure that is made available as OpenSource under MIT License.  
 
