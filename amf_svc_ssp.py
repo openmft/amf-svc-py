@@ -21,7 +21,7 @@ class ssp(amfservice):
         else:
             while True:
                 time.sleep(3)
-                status = self.run("ps -ef|grep -v grep|grep SSPPlatformFactory|grep admin|grep -c java", printflag=False)
+                status = self.run("ps -ef|grep -v grep|grep SSPPlatformFactory|grep -c java", printflag=False)
                 val = self.outbuf[0]
                 if val > 0:
                     break
@@ -32,7 +32,7 @@ class ssp(amfservice):
         self.printer.info("service stopping")
         self.run(self.home+"/bin/stopEngine.sh mode=auto") 
         time.sleep(15)
-        self.run("kill -9 `ps -ef|grep -v grep|grep SSPPlatformFactory|grep admin|grep java|awk '{ print $2 }'` >/dev/null 2>&1; echo", printflag=False)
+        self.run("kill -9 `ps -ef|grep -v grep|grep SSPPlatformFactory|grep java|awk '{ print $2 }'` >/dev/null 2>&1; echo", printflag=False)
 
     def restart(self):
         """stops and starts SSP"""
@@ -48,7 +48,7 @@ class ssp(amfservice):
         clist = []
         clist.append("%-20s%-12s%-10s" % ('PID FILE', 'PID', 'RUNNING'))
         clist.append('------------------------------------------')
-        self.run("ps -ef | grep admin | grep -v grep | grep SSPPlatformFactory| cut -c1-30", printflag=False)
+        self.run("ps -ef | grep -v grep | grep SSPPlatformFactory| cut -c1-30", printflag=False)
         line = self.outbuf
         pid = 'unknown'
         for line in self.outbuf:
