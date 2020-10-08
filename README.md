@@ -9,7 +9,9 @@ This has been envisioned to be a generic start, stop, restart processs with plug
 * Clone  or download this repository to a directory of your choice.
 * Create a symbolic link for amf.py -> ln -s amf.py amf
 * Create an environment variable per module. For example, for the module amf_svc_sfg.py, create an Environment variable called AMF_SFG_HOME, which is the base path of Sterling File Gateway (SFG).
+* For GM module amf_svc_gm.py, create an Environment variable called AMF_GM_HOME, which is the base path of GM Pre-requisites (Cassandra, Zookeeper, etc)
 * Either create an alias for amf or put the path of amf.py in PATH
+* If a particular node is an External Purge node, just add an Environment variable called SFG_EXTERNAL_PURGE=true and external purge will automatically be managed for that node in the cluster.
 
 # Operation
 
