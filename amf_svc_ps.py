@@ -8,6 +8,7 @@ class ps(amfservice):
 
     psfolders = ['/ibm/ssp_ps/sfg1', '/ibm/ssp_ps/sfg2']
     def __init__(self, svc, home):
+        amfservice.__init__(self, svc, home)
         self.svc = svc
         self.home = home
            
