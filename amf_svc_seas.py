@@ -13,54 +13,61 @@
 from amf import amfservice
 import time
 
-class ssp(amfservice):
+class seas(amfservice):
     """
-    IBM SSP
-    This service controls SSP.
+    IBM SEAS
+    This service controls SEAS.
     """
-    
     def __init__(self, svc, home):
         amfservice.__init__(self, svc, home)
         self.svc = svc
         self.home = home
            
     def start(self):
-        """start SSP"""
-        self.printer.info("service starting")
-        status = self.run(self.home+"/bin/startEngine.sh >/dev/null 2>&1", noWait=True)
-        if status:
-            self.printer.error("service start failed")   
-        else:
-            while True:
-                time.sleep(3)
-                status = self.run("ps -ef|grep -v grep|grep SSPPlatformFactory|grep -c java", printflag=False)
-                val = self.outbuf[0]
-                if val > 0:
-                    break
-        return status 
+        """start SEAS"""
+        status = self.run("ps -ef | grep -v grep | grep -v perimeter | grep java| grep seas", printflag=False)
+        if status == 0:
+            self.printer.info("seas is already running")
+        else: 
+            self.printer.info("service starting")
+            status = self.run(self.home+"/bin/startSeas.sh >/dev/null 2>&1", noWait=True)
+            if status:
+                self.printer.error("service start failed")   
+            else:
+                while True:
+                    time.sleep(3)
+                    status = self.run("ps -ef | grep -v grep | grep -v perimeter | grep java| grep seas", printflag=False)
+                    val = self.outbuf[0]
+                    if val > 0:
+                        break
+                return status
 
     def stop(self):
-        """stop SSP"""
+        """stop SEAS"""
+        status = 0
         self.printer.info("service stopping")
-        self.run(self.home+"/bin/stopEngine.sh mode=auto") 
-        time.sleep(15)
-        self.run("kill -9 `ps -ef|grep -v grep|grep SSPPlatformFactory|grep java|awk '{ print $2 }'` >/dev/null 2>&1; echo", printflag=False)
+        if self.run(self.home+"/bin/stopSeas.sh mode=auto"): 
+            self.printer.info("killing service")
+            self.run("kill -9 `ps -ef|grep -v grep| grep -v perimeter | grep seas|grep java|awk '{ print $2 }'` >/dev/null 2>&1; echo")
+        return status 
 
     def restart(self):
-        """stops and starts SSP"""
-        self.stop()
-        status = self.start()
+        """stops and starts SEAS"""
+        status = self.stop()
+        time.sleep(60)
+        if status == 0:
+            status = self.start()
         return status
     
     def status(self):
-        """reports status SSP"""
+        """reports status SEAS"""
         self.printer.info("checking service status")
         status = 0
         found = False
         clist = []
         clist.append("%-20s%-12s%-10s" % ('PID FILE', 'PID', 'RUNNING'))
         clist.append('------------------------------------------')
-        self.run("ps -ef | grep -v grep | grep SSPPlatformFactory| cut -c1-30", printflag=False)
+        self.run("ps -ef | grep admin | grep -v grep | grep -v perimeter | grep seas| grep java | cut -c1-30", printflag=True)
         line = self.outbuf
         pid = 'unknown'
         for line in self.outbuf:
@@ -73,8 +80,8 @@ class ssp(amfservice):
         clist.append("%-20s%-12s%-10s" % ('NA', pid, found))
         self.printer.info(clist)
         if found:
-            self.printer.info("SSP is running")
+            self.printer.info("seas is running")
         else:
-            self.printer.info("SSP is not running")
+            self.printer.info("seas is not running")
             status = 1
         return status
