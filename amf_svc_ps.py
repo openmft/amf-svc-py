@@ -6,7 +6,7 @@ class ps(amfservice):
     """ IBM Sterling File Gateway Perimiter Server Components
     This service controls all local PS components """
 
-    psfolders = ['/ibm/ssp_ps/sfg1', '/ibm/ssp_ps/sfg2']
+    psfolders = ['/ssp_ps/sfg1', '/ssp_ps/sfg2']
     def __init__(self, svc, home):
         amfservice.__init__(self, svc, home)
         self.svc = svc
