@@ -12,6 +12,9 @@ This has been envisioned to be a generic start, stop, restart processs with plug
 * For GM module amf_svc_gm.py, create an Environment variable called AMF_GM_HOME, which is the base path of GM Pre-requisites (Cassandra, Zookeeper, etc)
 * Either create an alias for amf or put the path of amf.py in PATH
 * If a particular node is an External Purge node, just add an Environment variable called SFG_EXTERNAL_PURGE=true and external purge will automatically be managed for that node in the cluster.
+* For primary token nodes of Cassandra that have reaper, and the zookeeper nodes, use these environment variables to report the availability:
+** USE_REAPER=true
+** USE_ZOOKEEPER=true
 
 # Operation
 
