@@ -72,7 +72,7 @@ class ps(amfservice):
         clist = []
         clist.append("%-35s%-12s%-10s" % ('PID FILE', 'PID', 'RUNNING'))
         clist.append('---------------------------------------------------------')
-        self.run("ps -ef | grep sterlingcommerce.perimeter | cut -c1-30", printflag=False)
+        self.run("ps -ef | grep sterlingcommerce.perimeter |grep -v grep| cut -c1-30", printflag=False)
         pidfiles = []
         for folder in self.psfolders:
             pidfiles.append(self.home+folder+'/ps.pid')
