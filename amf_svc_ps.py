@@ -28,7 +28,7 @@ class ps(amfservice):
     This service controls all local PS components """
 
     #Add your PS installation paths relative from $AMF_PS_HOME if there are more than one PS installations on the same server
-    psfolders = []
+    psfolders = ['']
     def __init__(self, svc, home):
         amfservice.__init__(self, svc, home)
         self.svc = svc
@@ -72,7 +72,7 @@ class ps(amfservice):
         clist = []
         clist.append("%-35s%-12s%-10s" % ('PID FILE', 'PID', 'RUNNING'))
         clist.append('---------------------------------------------------------')
-        self.run("ps -ef | grep java | cut -c1-30", printflag=False)
+        self.run("ps -ef | grep sterlingcommerce.perimeter | cut -c1-30", printflag=False)
         pidfiles = []
         for folder in self.psfolders:
             pidfiles.append(self.home+folder+'/ps.pid')
@@ -94,7 +94,7 @@ class ps(amfservice):
                 status = 1 
         self.printer.info(clist)
         if status == 0:
-            self.printer.info("ps services all running")
+            self.printer.info("ps service is up")
         else:
-            self.printer.info("ps services not running")
+            self.printer.info("ps service is down")
         return status
